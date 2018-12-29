@@ -52,6 +52,7 @@ class Button2 {
     CallbackFunction triple_cb = NULL;
     
   public:
+    Button2(){pin = -1;}
     Button2(byte attachTo, byte buttonMode = INPUT_PULLUP, unsigned int debounceTimeout = DEBOUNCE_MS);
     void setDebounceTime(unsigned int ms);
     

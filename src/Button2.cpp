@@ -103,6 +103,8 @@ unsigned int Button2::getClickType() {
 /////////////////////////////////////////////////////////////////
 
 void Button2::loop() {
+  if(pin < 0)return;
+
   prev_state = state;
   state = digitalRead(pin);
 
@@ -150,7 +152,10 @@ void Button2::loop() {
       switch (click_count) {
         case 1: 
           last_click_type = SINGLE_CLICK;
-          if (click_cb != NULL) click_cb (*this);
+          if (click_cb != NULL){
+            Serial.println("click_cb");
+              click_cb (*this);
+          } 
           break;
          case 2: 
           last_click_type = DOUBLE_CLICK;
