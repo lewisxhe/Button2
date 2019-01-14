@@ -70,7 +70,7 @@ class Button2 {
 
     unsigned int getNumberOfClicks();
     unsigned int getClickType();
-    
+    uint8_t getAttachPin(){return pin;}
     bool operator==(Button2 &rhs);
 
     void loop();
