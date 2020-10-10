@@ -26,12 +26,13 @@
 
 /////////////////////////////////////////////////////////////////
 
-class Button2 {
-  private:
-    byte pin;
+class Button2
+{
+private:
+    uint8_t pin;
     int prev_state;
     int state = HIGH;
-    byte click_count = 0;
+    uint8_t click_count = 0;
     unsigned int last_click_type = 0;
     unsigned long click_ms;
     unsigned long down_ms;
@@ -39,8 +40,8 @@ class Button2 {
     unsigned int down_time_ms = 0;
     bool pressed_triggered = false;
     bool longclick_detected = false;
-        
-    typedef void (*CallbackFunction) (Button2&);
+
+    typedef void (*CallbackFunction) (Button2 &);
 
     CallbackFunction pressed_cb = NULL;
     CallbackFunction released_cb = NULL;
@@ -50,12 +51,15 @@ class Button2 {
     CallbackFunction long_cb = NULL;
     CallbackFunction double_cb = NULL;
     CallbackFunction triple_cb = NULL;
-    
-  public:
-    Button2(){pin = -1;}
-    Button2(byte attachTo, byte buttonMode = INPUT_PULLUP, unsigned int debounceTimeout = DEBOUNCE_MS);
+
+public:
+    Button2()
+    {
+        pin = 0xFF;
+    }
+    Button2(uint8_t attachTo, uint8_t buttonMode = INPUT_PULLUP, unsigned int debounceTimeout = DEBOUNCE_MS);
     void setDebounceTime(unsigned int ms);
-    
+
     void setChangedHandler(CallbackFunction f);
     void setPressedHandler(CallbackFunction f);
     void setReleasedHandler(CallbackFunction f);
@@ -70,7 +74,10 @@ class Button2 {
 
     unsigned int getNumberOfClicks();
     unsigned int getClickType();
-    uint8_t getAttachPin(){return pin;}
+    uint8_t getAttachPin()
+    {
+        return pin;
+    }
     bool operator==(Button2 &rhs);
 
     void loop();
